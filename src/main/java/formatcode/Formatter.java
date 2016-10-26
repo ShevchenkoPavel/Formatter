@@ -1,17 +1,16 @@
-package com.company.formatcode;
+package main.java.formatcode;
 
 import java.io.FileReader;
 import java.io.IOException;
 
 /**
- * Created by pavel on 10/26/16.
+ * Reading file and formatting on rules Java.
+ * Output in the console.
  */
-public class Formatter {
-    static char Format(char count, String nameoffile)
-    {
-        try(FileReader reader = new FileReader(nameoffile))
-        {
-            // чтение посимвольно
+class Formatter {
+    static char format(char count, String nameoffile) throws IOException {
+
+        FileReader reader = new FileReader(nameoffile);
             int c;
             while((c=reader.read())!=-1){
                 count = (char)c;
@@ -21,11 +20,6 @@ public class Formatter {
                 if (count == ('{'))
                 {System.out.print("\n    ");}
             }
-        }
-        catch(IOException ex){
-
-            System.out.println(ex.getMessage());
-        }
         return count;
     }
 }
