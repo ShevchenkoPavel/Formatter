@@ -1,4 +1,4 @@
-package com.company.Formatcode;
+package com.company.formatcode;
 
 import java.io.*;
 import java.io.BufferedInputStream;
@@ -8,9 +8,8 @@ import java.io.InputStream;
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
         char buf = 0;
-        IReader.IRead(buf, "1.txt");
- //       System.out.println("Char: " +buf);
+        Formatter.Format(buf, "1.txt");
+        //       System.out.println("Char: " +buf);
     }
 }
