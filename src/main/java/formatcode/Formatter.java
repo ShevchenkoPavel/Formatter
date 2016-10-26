@@ -8,18 +8,16 @@ import java.io.IOException;
  * Output in the console.
  */
 class Formatter {
-    static char format(char count, String nameoffile) throws IOException {
+    static void format(String nameOfFile) throws IOException {
 
-        FileReader reader = new FileReader(nameoffile);
-            int c;
-            while((c=reader.read())!=-1){
-                count = (char)c;
-                System.out.print((char)c);
-                if ((count == (';') ) || (count == ('}')))
-                {System.out.print("\n");}
-                if (count == ('{'))
-                {System.out.print("\n    ");}
-            }
-        return count;
+        FileReader reader = new FileReader(nameOfFile);
+        int c;
+        while((c=reader.read())!=-1){
+            System.out.print((char)c);
+            if (((char)c == (';') ) || ((char)c == ('}')))
+            {System.out.print("\n");}
+            if ((char)c == ('{'))
+            {System.out.print("\n    ");}
+        }
     }
 }
