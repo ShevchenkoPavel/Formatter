@@ -6,5 +6,5 @@ package it.sevenbits.formatcode;
 
 public interface IReader {
     boolean hasChar();
-    char readchar();
+    char readChar();
 }

@@ -5,7 +5,7 @@ package it.sevenbits.formatcode;
  */
 public class StrWriter implements IWriter {
     @Override
-    public void writechar(final char c) {
+    public void writeChar(final char c) {
         System.out.print(c);
     }
 }

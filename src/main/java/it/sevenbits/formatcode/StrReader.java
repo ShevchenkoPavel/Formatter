@@ -21,7 +21,7 @@ public class StrReader implements IReader {
     }
 
     @Override
-    public char readchar() {
+    public char readChar() {
         try {
             c = (char) reader.read();
         } catch (IOException e) {

@@ -1,25 +1,24 @@
 import it.sevenbits.formatcode.*;
 import org.junit.Before;
 import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
 
 /**
- * Reader test
+ * strReader test
  */
-public class ReaderTest {
+public class StrReaderTest {
 
     private IReader reader;
 
     @Before
     public void setUp() {
-        IReader reader = new StrReader();
+        reader = new StrReader();
     }
 
     @Test
-    public void readerTest(){
+    public void strReaderTest(){
         char value = 'c';
-        System.out.println(value);
-        assertEquals(value, reader.readchar());
+        System.out.print(value);
+        assertEquals(true, reader.hasChar());
     }
 }

@@ -19,13 +19,13 @@ public class Formatter implements IFormatter {
     @Override
     public void format(IReader input, IWriter output, char c) {
         while (input.hasChar()) {
-            output.writechar(c=input.readchar());
+            output.writeChar(c=input.readChar());
             if ((c == (';')) || c == ('}')) {
-                output.writechar('\n');
+                output.writeChar('\n');
             }
             if (c == ('{')) {
-                output.writechar('\n');
-                output.writechar('\t');
+                output.writeChar('\n');
+                output.writeChar('\t');
             }
         }
     }

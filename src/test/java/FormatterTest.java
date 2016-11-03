@@ -18,5 +18,7 @@ public class FormatterTest {
     public void TestFormatter() {
         IReader input = new StrReader();
         IWriter output = new StrWriter();
+        char c = 0;
+        formatter.format(input, output, c);
     }
 }
