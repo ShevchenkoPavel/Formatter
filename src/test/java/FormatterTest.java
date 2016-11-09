@@ -2,6 +2,8 @@ import it.sevenbits.formatcode.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
+
 /**
  * Formatter test
  */
@@ -18,7 +20,6 @@ public class FormatterTest {
     public void TestFormatter() {
         IReader input = new StrReader();
         IWriter output = new StrWriter();
-        char c = 0;
-        formatter.format(input, output, c);
+        formatter.format(input, output);
     }
 }

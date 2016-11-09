@@ -1,6 +1,7 @@
 import it.sevenbits.formatcode.*;
 import org.junit.Before;
 import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -16,7 +17,7 @@ public class StrReaderTest {
     }
 
     @Test
-    public void strReaderTest(){
+    public void strReaderTest() {
         char value = 'c';
         System.out.print(value);
         assertEquals(true, reader.hasChar());

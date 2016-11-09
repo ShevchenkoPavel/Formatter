@@ -13,11 +13,9 @@ public class StrReader implements IReader {
 
     @Override
     public boolean hasChar() {
-        if ((int) c != -1 ) {
-          return true;
-        } else {
-            return false;
-        }
+        boolean has;
+        has = ((int) c != 65535);
+        return has;
     }
 
     @Override
