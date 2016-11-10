@@ -20,11 +20,13 @@ public class Formatter implements IFormatter {
      *                                        (4 - ' ' char literals)
      */
     @Override
-    public void format(final IReader input, final IWriter output) {
+    public void format(final IReader input, final IWriter output) throws FormatterException {
         char c = 0;
         char cPrevious = 0;
         char cMostPrevious;
         int mode = 0;
+
+        boolean error = false;
 
         while (input.hasChar()) {
             cMostPrevious = cPrevious;
@@ -82,5 +84,6 @@ public class Formatter implements IFormatter {
                 output.writeChar('\t');
             }
         }
+        if (error == true) throw new FormatterException("error");
     }
 }

@@ -18,7 +18,7 @@ public class FileReader implements IReader {
      * @throws FileNotFoundException for java.io.FileReader()
      */
 
-    FileReader(final String file) throws FileNotFoundException {
+    public FileReader(final String file) throws FileNotFoundException {
         fileName = file;
     }
 
