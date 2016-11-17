@@ -1,4 +1,7 @@
-package it.sevenbits.formatcode;
+package it.sevenbits.formatcode.iofile;
+
+import it.sevenbits.formatcode.core.FormatterException;
+import it.sevenbits.formatcode.core.IReader;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -9,16 +12,17 @@ import java.io.IOException;
 public class FileReader implements IReader {
 
     private char c;
-    private int eof = 65535;
+    private final int eof = 65535;
     private String fileName = "1.txt";
 
     /**
      *
      * @param file name of file
      * @throws FileNotFoundException for java.io.FileReader()
+     * @exception FormatterException exception
      */
 
-    public FileReader(final String file) throws FileNotFoundException {
+    public FileReader(final String file) throws FileNotFoundException, FormatterException {
         fileName = file;
     }
 
@@ -36,8 +40,12 @@ public class FileReader implements IReader {
     public char readChar() {
         try {
             c = (char) reader.read();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            try {
+                throw new FormatterException("reading failed", e);
+            } catch (FormatterException e1) {
+                e1.getMessage();
+            }
         }
         return c;
     }

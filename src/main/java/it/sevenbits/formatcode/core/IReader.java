@@ -1,4 +1,4 @@
-package it.sevenbits.formatcode;
+package it.sevenbits.formatcode.core;
 
 /**
  * It reads chars from the stream or file

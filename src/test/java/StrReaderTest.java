@@ -1,25 +1,45 @@
-import it.sevenbits.formatcode.*;
+import it.sevenbits.formatcode.core.FormatterException;
+import it.sevenbits.formatcode.core.IReader;
+import it.sevenbits.formatcode.iostring.StrReader;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
 /**
- * strReader test
+ * Tests for StrReader
  */
 public class StrReaderTest {
 
     private IReader reader;
 
     @Before
-    public void setUp() {
-        reader = new StrReader();
+    public void setUp() throws FormatterException { reader = new StrReader(""); }
+
+    @Test
+    public void hasCharTrue() throws FormatterException {
+        String s ="abc";
+        reader = new StrReader(s);
+        boolean b = reader.hasChar();
+        assertEquals(true, b);
     }
 
     @Test
-    public void strReaderTest() {
-        char value = 'c';
-        System.out.print(value);
-        assertEquals(true, reader.hasChar());
+    public void hasCharFalse() {
+        boolean b = reader.hasChar();
+        assertEquals(false, b);
     }
+
+    @Test
+    public void readCharTest() throws FormatterException {
+
+        String str = "abc";
+        reader = new StrReader(str);
+        StringBuilder builder = new StringBuilder();
+        while (reader.hasChar()) {
+            builder.append(reader.readChar());
+        }
+        assertEquals(str, builder.toString());
+    }
+
 }
