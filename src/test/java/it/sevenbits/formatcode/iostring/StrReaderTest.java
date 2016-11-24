@@ -1,5 +1,8 @@
+package it.sevenbits.formatcode.iostring;
+
 import it.sevenbits.formatcode.core.FormatterException;
 import it.sevenbits.formatcode.core.IReader;
+import it.sevenbits.formatcode.core.ReaderException;
 import it.sevenbits.formatcode.iostring.StrReader;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,10 +17,10 @@ public class StrReaderTest {
     private IReader reader;
 
     @Before
-    public void setUp() throws FormatterException { reader = new StrReader(""); }
+    public void setUp() throws ReaderException { reader = new StrReader(""); }
 
     @Test
-    public void hasCharTrue() throws FormatterException {
+    public void hasCharTrue() throws ReaderException {
         String s ="abc";
         reader = new StrReader(s);
         boolean b = reader.hasChar();
@@ -31,7 +34,7 @@ public class StrReaderTest {
     }
 
     @Test
-    public void readCharTest() throws FormatterException {
+    public void readCharTest() throws ReaderException {
 
         String str = "abc";
         reader = new StrReader(str);

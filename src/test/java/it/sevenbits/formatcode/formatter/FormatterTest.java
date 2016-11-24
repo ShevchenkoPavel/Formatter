@@ -1,7 +1,6 @@
-import it.sevenbits.formatcode.core.FormatterException;
-import it.sevenbits.formatcode.core.IFormatter;
-import it.sevenbits.formatcode.core.IReader;
-import it.sevenbits.formatcode.core.IWriter;
+package it.sevenbits.formatcode.formatter;
+
+import it.sevenbits.formatcode.core.*;
 import it.sevenbits.formatcode.formatter.Formatter;
 import it.sevenbits.formatcode.iostring.StrReader;
 import it.sevenbits.formatcode.iostring.StrWriter;
@@ -20,7 +19,7 @@ public class FormatterTest {
     public void setUp() { formatter = new Formatter(); }
 
     @Test
-    public void formatTest() throws FormatterException {
+    public void formatStrTest() throws FormatterException, ReaderException, WriterException {
         String s = "abc";
         IReader reader = new StrReader(s);
         IWriter writer = new StrWriter();

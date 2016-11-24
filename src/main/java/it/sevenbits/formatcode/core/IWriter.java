@@ -8,12 +8,14 @@ public interface IWriter {
     /**
      *
      * @param c char
+     * @throws WriterException exception
      */
-    void writeChar(char c);
+    void writeChar(char c) throws WriterException;
 
     /**
      *
      * @return string
+     * @throws WriterException exception
      */
-    String toStr();
+    String toStr() throws WriterException;
 }

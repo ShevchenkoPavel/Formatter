@@ -6,5 +6,5 @@ package it.sevenbits.formatcode.core;
 
 public interface IReader {
     boolean hasChar();
-    char readChar();
+    char readChar() throws ReaderException;
 }

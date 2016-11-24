@@ -1,4 +1,8 @@
+package it.sevenbits.formatcode.iostring;
+
+import it.sevenbits.formatcode.core.FormatterException;
 import it.sevenbits.formatcode.core.IWriter;
+import it.sevenbits.formatcode.core.WriterException;
 import it.sevenbits.formatcode.iostring.StrWriter;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,7 +20,7 @@ public class StrWriterTest {
     public void setUp() { writer = new StrWriter(); }
 
     @Test
-    public void writerTest() {
+    public void writerTest() throws WriterException {
         char a = 'a';
         char b = 'b';
         char c = 'c';

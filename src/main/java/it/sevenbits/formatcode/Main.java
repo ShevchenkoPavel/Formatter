@@ -1,8 +1,6 @@
 package it.sevenbits.formatcode;
 
-import it.sevenbits.formatcode.core.FormatterException;
-import it.sevenbits.formatcode.core.IReader;
-import it.sevenbits.formatcode.core.IWriter;
+import it.sevenbits.formatcode.core.*;
 import it.sevenbits.formatcode.formatter.Formatter;
 import it.sevenbits.formatcode.iofile.FileReader;
 import it.sevenbits.formatcode.iofile.FileWriter;
@@ -22,13 +20,17 @@ public class Main {
      * @param args in main class
      * @throws IOException input/output ex
      * @throws FormatterException exception
+     * @throws ReaderException exception
+     * @throws WriterException exception
      */
 
-    public static void main(final String[] args) throws IOException, FormatterException {
+    public static void main(final String[] args) throws IOException, FormatterException, ReaderException, WriterException {
 //        IReader reader = new StrReader();
 //        IWriter writer = new StrWriter();
 
-        IReader reader = new FileReader("1.txt");
+        String filename = "1.txt";
+        File file = new File(filename);
+        IReader reader = new FileReader(file);
         IWriter writer = new FileWriter("2.txt");
         Formatter formatter = new Formatter();
         formatter.format(reader, writer);

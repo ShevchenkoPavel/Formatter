@@ -2,6 +2,7 @@ package it.sevenbits.formatcode.iofile;
 
 import it.sevenbits.formatcode.core.FormatterException;
 import it.sevenbits.formatcode.core.IWriter;
+import it.sevenbits.formatcode.core.WriterException;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,33 +13,29 @@ import java.io.PrintWriter;
  */
 public class FileWriter implements IWriter {
 
-    private String fileName = "2.txt";
-    private File file = new File(fileName);
-    private PrintWriter out = new PrintWriter(file.getAbsoluteFile());
+    private PrintWriter out;
 
     /**
      *
      * @param fName name of file
      * @throws IOException exception
+     * @throws WriterException exception
      */
-    public FileWriter(final String fName) throws IOException {
-        fileName = fName;
+    public FileWriter(final String fName) throws IOException, WriterException {
+        File file;
+        file = new File(fName);
         if (!file.exists()) {
             file.createNewFile();
         }
+        out = new PrintWriter(file.getAbsoluteFile());
     }
 
     @Override
-    public void writeChar(final char c) {
+    public void writeChar(final char c) throws WriterException {
         try {
             out.append(c);
         } catch (Exception e) {
-            try {
-                throw new FormatterException("writing failed" ,e);
-            } catch (FormatterException e1) {
-                e1.getMessage();
-            }
-            e.getMessage();
+            throw new WriterException("writing failed" , e);
         }
     }
 
