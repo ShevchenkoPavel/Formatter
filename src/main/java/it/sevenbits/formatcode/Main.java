@@ -28,10 +28,15 @@ public class Main {
 //        IReader reader = new StrReader();
 //        IWriter writer = new StrWriter();
 
-        String filename = "1.txt";
-        File file = new File(filename);
-        IReader reader = new FileReader(file);
-        IWriter writer = new FileWriter("2.txt");
+        BufferedReader r = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Please, input file for reading");
+        String inputFile = r.readLine();
+        System.out.println("Please, input file for writing");
+        String outputFile = r.readLine();
+
+        File input = new File(inputFile);
+        IReader reader = new FileReader(input);
+        IWriter writer = new FileWriter(outputFile);
         Formatter formatter = new Formatter();
         formatter.format(reader, writer);
 

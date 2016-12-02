@@ -8,20 +8,23 @@ import it.sevenbits.formatcode.core.WriterException;
  */
 public class Actions {
 
-    public void action(final IWriter output, final StateMachine state, final char c) throws WriterException {
+    public void getAction(final String state, final char c, final IWriter output) throws WriterException {
 
-        if (state.nextState(c)) {
+        output.writeChar(c);
 
-            output.writeChar(c);
-            if ((c == (';')) || c == ('}')) {
-                output.writeChar('\n');
+        if (state.equals("defaultState")) {
+            switch (c) {
+                case (';'):
+                    output.writeChar('\n');
+                    break;
+                case ('}'):
+                    output.writeChar('\n');
+                    break;
+                case ('{'):
+                    output.writeChar('\n');
+                    output.writeChar('\t');
             }
-            if (c == ('{')) {
-                output.writeChar('\n');
-                output.writeChar('\t');
-            }
-        } else {
-            output.writeChar(c);
         }
     }
+
 }

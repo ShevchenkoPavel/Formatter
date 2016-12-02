@@ -21,12 +21,17 @@ public class Formatter implements IFormatter {
     public void format(final IReader input, final IWriter output) throws FormatterException {
 
         Actions action = new Actions();
-        StateMachine state = new StateMachine();
+        StateMachine currentState = new StateMachine();
+        String state = "defaultState";
         char c;
+
+
         try {
             while (input.hasChar()) {
                 c = input.readChar();
-                action.action(output, state, c);
+                action.getAction(state, c, output);
+                state = currentState.getNextState(state, c);
+
             }
         } catch (Exception e) {
             throw new FormatterException("format failed", e);
