@@ -1,6 +1,7 @@
 package it.sevenbits.formatcode.formatter;
 
 import it.sevenbits.formatcode.core.*;
+import it.sevenbits.formatcode.formatter.actions.DefaultAction;
 import it.sevenbits.formatcode.formatter.states.SimpleState;
 
 /**
@@ -20,20 +21,20 @@ public class Formatter implements IFormatter {
 
         Action action = new Action();
         StateMachine currentState = new StateMachine();
-        IState stat = new SimpleState("defaultState");
-        String state = stat.StateIs();
+        String state = "defaultState";
         char c;
 
+        /*
+        IState stat = new SimpleState("defaultState");
+        String state = stat.StateIs();
+        */
 
         try {
             while (input.hasChar()) {
                 c = input.readChar();
-                /*
-                action.getAction(state, c, output);
-                state = currentState.getNextState(state, c);
-                */
 
-                action.getA(state, c, output);
+                IAction executor = action.getAction(state, c);
+                executor.execute(c, output);
                 state = currentState.getNextState(state, c);
 
             }

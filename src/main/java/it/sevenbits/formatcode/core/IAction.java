@@ -11,5 +11,4 @@ public interface IAction {
      * @throws WriterException exception
      */
     public void execute(char c, IWriter out) throws WriterException;
-
 }
