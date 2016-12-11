@@ -24,9 +24,6 @@ public class FileWriter implements IWriter {
     public FileWriter(final String fName) throws IOException, WriterException {
         File file;
         file = new File(fName);
-        if (!file.exists()) {
-            file.createNewFile();
-        }
         out = new PrintWriter(file.getAbsoluteFile());
     }
 

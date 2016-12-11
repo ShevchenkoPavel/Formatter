@@ -1,9 +1,7 @@
 package it.sevenbits.formatcode.formatter;
 
-import it.sevenbits.formatcode.core.FormatterException;
-import it.sevenbits.formatcode.core.IFormatter;
-import it.sevenbits.formatcode.core.IReader;
-import it.sevenbits.formatcode.core.IWriter;
+import it.sevenbits.formatcode.core.*;
+import it.sevenbits.formatcode.formatter.states.SimpleState;
 
 /**
  * Reading file and formatting on rules Java.
@@ -20,16 +18,22 @@ public class Formatter implements IFormatter {
     @Override
     public void format(final IReader input, final IWriter output) throws FormatterException {
 
-        Actions action = new Actions();
+        Action action = new Action();
         StateMachine currentState = new StateMachine();
-        String state = "defaultState";
+        IState stat = new SimpleState("defaultState");
+        String state = stat.StateIs();
         char c;
 
 
         try {
             while (input.hasChar()) {
                 c = input.readChar();
+                /*
                 action.getAction(state, c, output);
+                state = currentState.getNextState(state, c);
+                */
+
+                action.getA(state, c, output);
                 state = currentState.getNextState(state, c);
 
             }

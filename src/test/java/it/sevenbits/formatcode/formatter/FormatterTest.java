@@ -20,7 +20,7 @@ public class FormatterTest {
 
     @Test
     public void formatStrTest() throws FormatterException, ReaderException, WriterException {
-        String s = "abc";
+        String s = "{abc;}";
         IReader reader = new StrReader(s);
         IWriter writer = new StrWriter();
         formatter.format(reader, writer);
