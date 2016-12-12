@@ -6,7 +6,7 @@ import it.sevenbits.formatcode.formatter.states.SimpleState;
 
 /**
  * Reading file and formatting on rules Java.
- * Output in the console.
+ *
  */
 public class Formatter implements IFormatter {
 

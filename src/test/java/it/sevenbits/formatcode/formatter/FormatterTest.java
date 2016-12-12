@@ -24,7 +24,7 @@ public class FormatterTest {
         IReader reader = new StrReader(s);
         IWriter writer = new StrWriter();
         formatter.format(reader, writer);
-        assertEquals(s, writer.toStr());
+        assertEquals("{\n\tabc;\n}\n", writer.toStr());
     }
 
 }
