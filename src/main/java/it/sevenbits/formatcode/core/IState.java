@@ -5,5 +5,4 @@ package it.sevenbits.formatcode.core;
  */
 public interface IState {
 
-    String StateIs();
 }

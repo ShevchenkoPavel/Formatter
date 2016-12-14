@@ -35,11 +35,11 @@ public class Main {
         String outputFile = r.readLine();
 
         File input = new File(inputFile);
-        IReader reader = new FileReader(input);
+        IReader<Character> reader = new FileReader(input);
         IWriter writer = new FileWriter(outputFile);
+        IReader<IToken> lexer = new SimpleLexer(reader);
         Formatter formatter = new Formatter();
-        formatter.format(reader, writer);
-
+        formatter.format(lexer, writer);
         System.out.println(writer.toStr());
     }
 }

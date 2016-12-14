@@ -24,7 +24,7 @@ public class FileReaderTest {
     public void setUp() throws FileNotFoundException, ReaderException {
         reader = mock(FileReader.class);
         when(reader.hasChar()).thenReturn(true);
-        when(reader.readChar()).thenReturn('c');
+        when(reader.read()).thenReturn('c');
     }
 
     @Test
@@ -34,6 +34,6 @@ public class FileReaderTest {
 
     @Test
     public void readCharFFTest() throws ReaderException {
-        assertEquals('c', reader.readChar());
+        assertEquals('c', reader.read());
     }
 }

@@ -12,5 +12,5 @@ public interface IFormatter {
      * @throws FormatterException exception
      *
      */
-    void format(IReader input, IWriter output) throws FormatterException;
+    void format(IReader<IToken> input, IWriter output) throws FormatterException;
 }

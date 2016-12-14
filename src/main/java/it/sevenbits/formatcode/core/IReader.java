@@ -4,7 +4,8 @@ package it.sevenbits.formatcode.core;
  * It reads chars from the stream or file
  */
 
-public interface IReader {
+public interface IReader<T> {
     boolean hasChar();
-    char readChar() throws ReaderException;
+    T read() throws ReaderException;
 }
+

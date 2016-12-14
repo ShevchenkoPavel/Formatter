@@ -40,7 +40,7 @@ public class StrReaderTest {
         reader = new StrReader(str);
         StringBuilder builder = new StringBuilder();
         while (reader.hasChar()) {
-            builder.append(reader.readChar());
+            builder.append(reader.read());
         }
         assertEquals(str, builder.toString());
     }

@@ -2,6 +2,7 @@ package it.sevenbits.formatcode.iofile;
 
 import it.sevenbits.formatcode.core.FormatterException;
 import it.sevenbits.formatcode.core.IReader;
+import it.sevenbits.formatcode.core.IToken;
 import it.sevenbits.formatcode.core.ReaderException;
 
 import java.io.File;
@@ -11,9 +12,9 @@ import java.io.IOException;
 /**
  * It reads chars from file
  */
-public class FileReader implements IReader {
+public class FileReader implements IReader<Character> {
 
-    private char c;
+    private int c;
     private java.io.FileReader reader;
 
     /**
@@ -30,19 +31,19 @@ public class FileReader implements IReader {
 
     @Override
     public boolean hasChar() {
-        final int eof = 65535;
+        final int eof = -1;
         boolean has;
-        has = ((int) c != eof);
+        has = (c != eof);
         return has;
     }
 
     @Override
-    public char readChar() throws ReaderException {
+    public Character read() throws ReaderException {
         try {
-            c = (char) reader.read();
+            c = reader.read();
         } catch (Exception e) {
            throw new ReaderException("reading failed", e);
         }
-        return c;
+        return (char) c;
     }
 }

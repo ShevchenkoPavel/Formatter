@@ -1,14 +1,12 @@
 package it.sevenbits.formatcode.formatter;
 
 import it.sevenbits.formatcode.core.*;
-import it.sevenbits.formatcode.formatter.actions.DefaultAction;
 import it.sevenbits.formatcode.formatter.states.SimpleState;
 
 /**
- * Reading file and formatting on rules Java.
- *
+ * temp formatter implementation
  */
-public class Formatter implements IFormatter {
+public class FormatterForLexer implements IFormatter {
 
     /**
      *
@@ -17,16 +15,18 @@ public class Formatter implements IFormatter {
      *
      */
     @Override
-    public void format(final IReader input, final IWriter output) throws FormatterException {
+    public void format(final IReader<IToken> input, final IWriter output) throws FormatterException {
 
         Action action = new Action();
         StateMachine currentState = new StateMachine();
         IState state = new SimpleState("defaultState");
-        char c;
 
         try {
             while (input.hasChar()) {
-                c = (char) input.read();
+
+                IToken token = input.read();
+                String lexeme = token.getLexeme(token);
+                Character c = lexeme.charAt(0);
 
                 IAction executor = action.getAction(state, c);
                 executor.execute(c, output);
@@ -37,4 +37,5 @@ public class Formatter implements IFormatter {
             throw new FormatterException("format failed", e);
         }
     }
+
 }

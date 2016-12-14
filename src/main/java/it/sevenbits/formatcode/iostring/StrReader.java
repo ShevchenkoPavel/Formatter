@@ -1,13 +1,11 @@
 package it.sevenbits.formatcode.iostring;
 
-import it.sevenbits.formatcode.core.FormatterException;
-import it.sevenbits.formatcode.core.IReader;
-import it.sevenbits.formatcode.core.ReaderException;
+import it.sevenbits.formatcode.core.*;
 
 /**
  * It reads chars from string
  */
-public class StrReader implements IReader {
+public class StrReader implements IReader<Character> {
 
     private final String str;
     private int index = 0;
@@ -22,7 +20,7 @@ public class StrReader implements IReader {
     }
 
     @Override
-    public char readChar() throws ReaderException {
+    public Character read() throws ReaderException {
         try {
             return str.charAt(index++);
         } catch (Exception e) {
