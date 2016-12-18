@@ -1,19 +1,15 @@
-package it.sevenbits.formatcode;
+package it.sevenbits.formatcode.lexer;
 
 import it.sevenbits.formatcode.core.IReader;
-import it.sevenbits.formatcode.core.IState;
 import it.sevenbits.formatcode.core.IToken;
 import it.sevenbits.formatcode.core.ReaderException;
-import it.sevenbits.formatcode.formatter.Token;
-import it.sevenbits.formatcode.formatter.states.SimpleState;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
- * Created by Denis on 12/12/16.
+ * Lexical analyzer
  */
-public class SimpleLexer implements IReader<IToken> {
+public class Lexer implements IReader<IToken> {
 
     private StringBuilder lexeme = new StringBuilder();
     private final IReader<Character> in;
@@ -21,13 +17,9 @@ public class SimpleLexer implements IReader<IToken> {
     private boolean hasPrevious = false;
     private String previousString = "";
 
-    private IState defaultState = new SimpleState("defaultState");
-    private IState cycleForState = new SimpleState("cycleForState");
-    private IState spaceState = new SimpleState("spaceState");
-
     private ArrayList<String> stringList = new ArrayList<>();
 
-    public SimpleLexer(final IReader<Character> reader) {
+    public Lexer(final IReader<Character> reader) {
         in = reader;
         createList();
     }
@@ -80,6 +72,5 @@ public class SimpleLexer implements IReader<IToken> {
         }
 
         return new Token(lexeme.toString());
-//        return new Token(in.read().toString());
     }
 }

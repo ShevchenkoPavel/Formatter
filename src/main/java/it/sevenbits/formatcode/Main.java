@@ -2,11 +2,9 @@ package it.sevenbits.formatcode;
 
 import it.sevenbits.formatcode.core.*;
 import it.sevenbits.formatcode.formatter.Formatter;
-import it.sevenbits.formatcode.formatter.FormatterForLexer;
 import it.sevenbits.formatcode.iofile.FileReader;
 import it.sevenbits.formatcode.iofile.FileWriter;
-import it.sevenbits.formatcode.iostring.StrReader;
-import it.sevenbits.formatcode.iostring.StrWriter;
+import it.sevenbits.formatcode.lexer.Lexer;
 
 import java.io.*;
 
@@ -37,9 +35,9 @@ public class Main {
 
         File input = new File(inputFile);
         IReader<Character> reader = new FileReader(input);
-        IWriter<String> writer = new FileWriter(outputFile);
-        IReader<IToken> lexer = new SimpleLexer(reader);
-        FormatterForLexer formatter = new FormatterForLexer();
+        IWriter writer = new FileWriter(outputFile);
+        IReader<IToken> lexer = new Lexer(reader);
+        Formatter formatter = new Formatter();
         formatter.format(lexer, writer);
         System.out.println(writer.toStr());
     }

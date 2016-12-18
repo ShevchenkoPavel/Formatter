@@ -17,20 +17,20 @@ public class Formatter implements IFormatter {
      *
      */
     @Override
-    public void format(final IReader input, final IWriter output) throws FormatterException {
+    public void format(final IReader<IToken> input, final IWriter<String> output) throws FormatterException {
 
-        Action action = new Action();
+        Actions action = new Actions();
         StateMachine currentState = new StateMachine();
         IState state = new SimpleState("defaultState");
-        char c;
 
         try {
             while (input.hasChar()) {
-                c = (char) input.read();
 
-                IAction executor = action.getAction(state, c);
-                executor.execute(c, output);
-                state = currentState.getNextState(state, c);
+                IToken token = input.read();
+                String lexeme = token.getLexeme(token);
+                state = currentState.getNextState(state, lexeme);
+                IAction executor = action.getAction(state, lexeme);
+                executor.execute(lexeme, output);
 
             }
         } catch (Exception e) {
