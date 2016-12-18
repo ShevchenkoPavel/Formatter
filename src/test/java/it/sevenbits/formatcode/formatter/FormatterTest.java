@@ -25,7 +25,7 @@ public class FormatterTest {
 
     @Test
     public void formatStrTest() throws FormatterException, ReaderException, WriterException {
-        String s = "{abc;}";
+        String s = "{abc;}}";
         reader = new StrReader(s);
         IReader<IToken> lexer = new Lexer(reader);
         IWriter<String> writer = new StrWriter();

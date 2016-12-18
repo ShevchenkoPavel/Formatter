@@ -30,4 +30,11 @@ public class StrWriterTest {
         assertEquals("abc", writer.toStr());
     }
 
+    @Test
+    public void writerStrTest() throws WriterException {
+        String s = "abc123";
+        writer.writeLexeme(s);
+        assertEquals(s, writer.toStr());
+    }
+
 }
