@@ -14,4 +14,10 @@ public class OpenBraceAction implements IAction {
         out.writeChar('\n');
         out.writeChar('\t');
     }
+    @Override
+    public void execute(final String s, final IWriter out) throws WriterException {
+        out.writeLexeme(s);
+        out.writeLexeme("\n");
+        out.writeLexeme("\t");
+    }
 }

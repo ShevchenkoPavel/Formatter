@@ -6,12 +6,14 @@ import it.sevenbits.formatcode.core.ReaderException;
 import it.sevenbits.formatcode.formatter.Token;
 
 /**
- * Created by pavel on 12/12/16.
+ * Created by Denis on 12/12/16.
  */
 public class SimpleLexer implements IReader<IToken> {
+
+    private StringBuilder lexeme = new StringBuilder();
     private final IReader<Character> in;
 
-    public SimpleLexer(IReader<Character> reader) {
+    public SimpleLexer(final IReader<Character> reader) {
         in = reader;
     }
 
@@ -22,6 +24,18 @@ public class SimpleLexer implements IReader<IToken> {
 
     @Override
     public IToken read() throws ReaderException {
-        return new Token(in.read().toString());
+
+        lexeme.delete(0, lexeme.length());
+        Character c = 'c';
+
+        if (in.hasChar()) {
+            while ((!c.toString().equals(" ")) && (in.hasChar())) {
+                c = in.read();
+                lexeme.append(c);
+            }
+        }
+
+        return new Token(lexeme.toString());
+//        return new Token(in.read().toString());
     }
 }

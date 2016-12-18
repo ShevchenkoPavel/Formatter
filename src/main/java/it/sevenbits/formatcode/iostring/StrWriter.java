@@ -20,9 +20,18 @@ public class StrWriter implements IWriter {
         }
     }
 
+    @Override
+    public void writeLexeme(final String s) throws WriterException {
+        try {
+            builder.append(s);
+        } catch (Exception e) {
+            throw new WriterException("writing failed", e);
+        }
+    }
+
     /**
      *
-     * @return
+     * @return all
      * @throws WriterException exception
      */
     public String toStr() throws WriterException {

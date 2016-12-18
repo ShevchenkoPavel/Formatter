@@ -37,6 +37,15 @@ public class FileWriter implements IWriter {
     }
 
     @Override
+    public void writeLexeme(final String s) throws WriterException {
+        try {
+            out.append(s);
+        } catch (Exception e) {
+            throw new WriterException("writing failed" , e);
+        }
+    }
+
+    @Override
     public String toStr() {
         out.close();
         return null;

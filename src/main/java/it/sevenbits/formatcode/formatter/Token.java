@@ -9,12 +9,13 @@ public class Token implements IToken {
 
     private String lexeme = "";
 
-    public Token(String lexeme) {
+    public Token(final String lexeme) {
         this.lexeme = lexeme;
     }
 
     @Override
-    public String getLexeme(IToken token) {
+    public String getLexeme(final IToken token) {
         return lexeme;
     }
+
 }

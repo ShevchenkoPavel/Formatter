@@ -13,4 +13,9 @@ public class SemicolonAction implements IAction {
         out.writeChar(c);
         out.writeChar('\n');
     }
+    @Override
+    public void execute(final String s, final IWriter out) throws WriterException {
+        out.writeLexeme(s);
+        out.writeLexeme("\n");
+    }
 }

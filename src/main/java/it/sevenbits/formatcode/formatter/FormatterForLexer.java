@@ -15,7 +15,7 @@ public class FormatterForLexer implements IFormatter {
      *
      */
     @Override
-    public void format(final IReader<IToken> input, final IWriter output) throws FormatterException {
+    public void format(final IReader<IToken> input, final IWriter<String> output) throws FormatterException {
 
         Action action = new Action();
         StateMachine currentState = new StateMachine();
@@ -26,12 +26,13 @@ public class FormatterForLexer implements IFormatter {
 
                 IToken token = input.read();
                 String lexeme = token.getLexeme(token);
-                Character c = lexeme.charAt(0);
+                output.writeLexeme(lexeme);
 
+                /*Character c = lexeme.charAt(0);
                 IAction executor = action.getAction(state, c);
                 executor.execute(c, output);
                 state = currentState.getNextState(state, c);
-
+                */
             }
         } catch (Exception e) {
             throw new FormatterException("format failed", e);

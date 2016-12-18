@@ -13,4 +13,9 @@ public class DefaultAction implements IAction {
     public void execute(final char c, final IWriter out) throws WriterException {
         out.writeChar(c);
     }
+    @Override
+    public void execute(final String s, final IWriter out) throws WriterException {
+        out.writeLexeme(s);
+    }
+
 }
