@@ -2,7 +2,6 @@ package it.sevenbits.formatcode.formatter;
 
 import it.sevenbits.formatcode.core.IAction;
 import it.sevenbits.formatcode.core.IState;
-import it.sevenbits.formatcode.core.IWriter;
 import it.sevenbits.formatcode.core.WriterException;
 import it.sevenbits.formatcode.formatter.actions.CloseBraceAction;
 import it.sevenbits.formatcode.formatter.actions.DefaultAction;
@@ -14,10 +13,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Writing operations without lexer
+ * Writing operations for lexer
  */
-
-public class Action {
+public class Actions {
 
     private IAction defaultA = new DefaultAction();
     private IAction openBraceA = new OpenBraceAction();
@@ -25,30 +23,36 @@ public class Action {
     private IAction semicolonA = new SemicolonAction();
 
     private boolean firstLaunch = true;
-    private Map<IState, HashMap<Character, IAction>> actionMap = new HashMap<>();
+    private Map<IState, HashMap<String, IAction>> actionMap = new HashMap<>();
 
     private void createMap() {
         IState defaultState = new SimpleState("defaultState");
+        IState cycleForState = new SimpleState("cycleForState");
 
-        HashMap<Character, IAction> defaultMap = new HashMap<>();
-        defaultMap.put('{', openBraceA);
-        defaultMap.put('}', closeBraceA);
-        defaultMap.put(';', semicolonA);
+        HashMap<String, IAction> defaultMap = new HashMap<>();
+        defaultMap.put("{", openBraceA);
+        defaultMap.put("}", closeBraceA);
+        defaultMap.put(";", semicolonA);
+
+        HashMap<String, IAction> cycleForMap = new HashMap<>();
+        cycleForMap.put("{", openBraceA);
+        cycleForMap.put("}", closeBraceA);
+        cycleForMap.put(";", semicolonA);
 
         actionMap.put(defaultState, defaultMap);
+        actionMap.put(cycleForState, cycleForMap);
     }
-
 
     private IAction action = defaultA;
 
-    public IAction getAction(final IState state, final char c) throws WriterException {
+    public IAction getAction(final IState state, final String s) throws WriterException {
 
         if (firstLaunch) {
             createMap();
             firstLaunch = false;
         }
 
-        Map<Character, IAction> map = new HashMap<>();
+        Map<String, IAction> map = new HashMap<>();
 
         Object key;
         Object value;
@@ -59,7 +63,7 @@ public class Action {
             value = entry.getValue();
 
             if (key.equals(state)) {
-                map.putAll((HashMap<Character, IAction>) value);
+                map.putAll((HashMap<String, IAction>) value);
                 break;
             }
         }
@@ -67,7 +71,7 @@ public class Action {
         for (Map.Entry entry : map.entrySet()) {
             key = entry.getKey();
             value = entry.getValue();
-            if ((Character) key == c) {
+            if (key.equals(s)) {
                 action = (IAction) value;
                 break;
             }
